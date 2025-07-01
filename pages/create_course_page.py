@@ -14,7 +14,7 @@ class CreateCoursePage(BasePage):
         super().__init__(page)
 
         self.image_upload_widget = ImageUploadWidgetComponent(page, 'create-course-preview')
-        self.exercises_empty_view = EmptyViewComponent(page, 'create-course-exercises')
+        self.exercises_empty_view = EmptyViewComponent(page)
         self.create_exercise_form = CreateCourseExerciseFormComponent(page)
         self.create_course_form = CreateCourseFormComponent(page)
         self.create_course_toolbar_view = CreateCourseToolbarViewComponent(page)
@@ -23,6 +23,7 @@ class CreateCoursePage(BasePage):
 
     def check_visible_exercises_empty_view(self):
         self.exercises_empty_view.check_visible(
+            identifier='create-course-exercises',
             title='There is no exercises',
             description='Click on "Create exercise" button to create new exercise'
         )

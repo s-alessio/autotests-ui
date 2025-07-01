@@ -23,13 +23,13 @@ def test_create_course(courses_list_page:CoursesListPage, create_course_page:Cre
 
     create_course_page.create_course_toolbar_view.check_visible(is_create_course_disabled=True)
 
-    create_course_page.image_upload_widget.check_visible(is_image_uploaded=False)
+    create_course_page.image_upload_widget.check_visible('create-course-preview',is_image_uploaded=False)
     create_course_page.create_course_form.check_visible("","","","0","0")
 
     create_course_page.create_course_exercises_toolbar_view.check_visible()
     create_course_page.check_visible_exercises_empty_view()
-    create_course_page.image_upload_widget.upload_preview_image('./testdata/files/image.png')
-    create_course_page.image_upload_widget.check_visible(is_image_uploaded=True)
+    create_course_page.image_upload_widget.upload_preview_image('create-course-preview','./testdata/files/image.png')
+    create_course_page.image_upload_widget.check_visible('create-course-preview',is_image_uploaded=True)
 
     create_course_page.create_course_form.fill("Playwright","2 weeks","Playwright","100","10")
     create_course_page.create_course_form.check_visible("Playwright", "2 weeks", "Playwright", "100", "10")
