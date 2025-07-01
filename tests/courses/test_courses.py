@@ -1,7 +1,9 @@
 import pytest
 from pages.courses.courses_list_page import CoursesListPage
 from pages.courses.create_course_page import CreateCoursePage
+import time
 
+from pages.courses.edit_course_page import EditCoursePage
 
 
 @pytest.mark.courses
@@ -15,11 +17,6 @@ class TestCourses:
         courses_list_page.check_visible_empty_view()
 
 
-
-
-
-    @pytest.mark.courses
-    @pytest.mark.regression
     def test_create_course(self, courses_list_page:CoursesListPage, create_course_page:CreateCoursePage):
         create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
 
@@ -43,4 +40,25 @@ class TestCourses:
         )
 
 
+    def test_edit_course(self, courses_list_page:CoursesListPage, create_course_page:CreateCoursePage, edit_course_page:EditCoursePage):
+        create_course_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create")
+        create_course_page.image_upload_widget.upload_preview_image('create-course-preview',
+                                                                    './testdata/files/image.png')
+        create_course_page.create_course_form.fill("Playwright", "2 weeks", "Playwright", "100", "10")
+        create_course_page.create_course_form.check_visible("Playwright", "2 weeks", "Playwright", "100", "10")
+        create_course_page.create_course_toolbar_view.click_create_course_button()
+        courses_list_page.toolbar_view.check_visible()
+        courses_list_page.course_view.check_visible(
+            index=0, title="Playwright", max_score="100", min_score="10", estimated_time="2 weeks"
+        )
+
+        courses_list_page.course_view.menu.click_edit(0)
+        edit_course_page.edit_course_toolbar_view.check_visible(is_save_course_disabled=False)
+        edit_course_page.edit_course_form.fill("Playwright Advanced", "4 weeks", "Playwright not for dummies", "200", "20")
+        edit_course_page.edit_course_form.check_visible("Playwright Advanced", "4 weeks", "Playwright not for dummies", "200", "20")
+        edit_course_page.edit_course_toolbar_view.check_visible(is_save_course_disabled=False)
+        edit_course_page.edit_course_toolbar_view.click_save_course_button()
+        courses_list_page.course_view.check_visible(
+            index=0, title="Playwright Advanced", max_score="200", min_score="20", estimated_time="4 weeks"
+        )
 
