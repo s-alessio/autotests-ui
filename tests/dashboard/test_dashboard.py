@@ -11,9 +11,12 @@ from allure_commons.types import Severity
 @pytest.mark.dashboard
 @pytest.mark.regression
 @allure.tag(AllureTag.REGRESSION, AllureTag.DASHBOARD)
-@allure.epic(AllureEpic.LMS) # Добавили epic
-@allure.feature(AllureFeature.DASHBOARD) # Добавили feature
-@allure.story(AllureStory.DASHBOARD) # Добавили story
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeature.DASHBOARD)
+@allure.story(AllureStory.DASHBOARD)
+@allure.parent_suite(AllureEpic.LMS)
+@allure.suite(AllureFeature.DASHBOARD)
+@allure.sub_suite(AllureStory.DASHBOARD)
 class TestDashboard:
     @allure.title("Check displaying of dashboard page")
     @allure.severity(Severity.NORMAL)
