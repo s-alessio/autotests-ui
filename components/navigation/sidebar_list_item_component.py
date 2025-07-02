@@ -6,7 +6,7 @@ from components.base_component import BaseComponent
 from elements.button import Button
 from elements.icon import Icon
 from elements.text import Text
-
+import allure
 
 class SidebarListItemComponent(BaseComponent):
     def __init__(self, page: Page):
@@ -16,6 +16,7 @@ class SidebarListItemComponent(BaseComponent):
         self.title = Text(page,'{identifier}-drawer-list-item-title-text', "Title")
         self.button = Button(page,'{identifier}-drawer-list-item-button', "Button")
 
+    @allure.step('Check visible "{title}" sidebar list item')
     def check_visible(self, identifier: str, title: str):
         self.icon.check_visible(identifier=identifier)
 
