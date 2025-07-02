@@ -1,1 +1,4 @@
 *pyc
+allure-report/*
+allure-results/*
+browser-state.json
