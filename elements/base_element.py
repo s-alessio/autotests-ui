@@ -16,6 +16,7 @@ class BaseElement:
         with allure.step(f'Getting locator with "data-testid={locator}" at index "{nth}"'):
             return self.page.get_by_test_id(locator).nth(nth)
 
+
     def click(self, nth: int = 0, **kwargs):
         # Добавили аргумент nth и передеаем его в get_locator
         with allure.step(f'Clicking {self.type_of} "{self.name}"'):
@@ -33,3 +34,5 @@ class BaseElement:
         with allure.step(f'Checking that {self.type_of} "{self.name}" has text "{text}"'):
             locator = self.get_locator(nth, **kwargs)
             expect(locator).to_have_text(text)
+
+
