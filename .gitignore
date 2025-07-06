@@ -1,5 +1,5 @@
 # pycharm
-.idea
+/.idea
 
 # python
 .venv
@@ -14,3 +14,5 @@ allure-report
 *.json
 videos
 tracing
+
+
