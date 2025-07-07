@@ -12,7 +12,8 @@ on:
 
 # Определяем все шаги, которые должны быть выполнены в рамках работы с тестами
 jobs:
-  run-tests:
+  job_1:
+    name: run-tests
     runs-on: ubuntu-latest  # Указываем, что тесты будут запускаться на последней версии Ubuntu
 
     steps:
@@ -54,7 +55,10 @@ jobs:
         with:
           allure_results: allure-results  # Указываем каталог с результатами тестов
           allure_history: allure-history  # Указываем каталог для истории отчётов Allure
-
+  job_2:
+    name: publish-report
+    needs: run-tests
+    runs-on: ubuntu-latest
       # 7. Шаг для деплоя отчёта Allure на GitHub Pages, чтобы его можно было просматривать в браузере
       - name: Deploy report to Github Pages
         if: always()  # Выполняется всегда, независимо от успеха других шагов
