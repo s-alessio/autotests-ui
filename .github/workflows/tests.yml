@@ -58,7 +58,7 @@ jobs:
 
   job_2:
     name: publish-report
-    needs: run-tests
+    needs: job_1
     runs-on: ubuntu-latest
     steps:
       # 7. Шаг для деплоя отчёта Allure на GitHub Pages, чтобы его можно было просматривать в браузере
