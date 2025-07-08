@@ -34,6 +34,7 @@ class Input(BaseElement):
         self.track_coverage(ActionType.FILL, nth, **kwargs)
 
 
+
     def check_have_value(self, value: str, nth: int = 0, **kwargs):
         # Добавили аргумент nth и передеаем его в get_locator
         step = f'Checking that {self.type_of} "{self.name}" has a value "{value}"'
